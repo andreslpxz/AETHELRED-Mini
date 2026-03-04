@@ -1,0 +1,28 @@
+model:
+  layers: 12
+  d_model: 768
+  n_heads: 12
+  d_ff: 3072
+  vocab_size: 32000
+  seq_len: 1024
+  dropout: 0.1
+  n_experts: 4
+  top_k_moe: 2
+  capacity_factor: 1.2
+
+training:
+  batch_size: 1
+  grad_accum: 32
+  lr: 0.0003
+  warmup_steps: 1000
+  max_steps: 100000
+  fp16: true
+  use_bnb: true
+  checkpoint_interval: 1000
+  eval_interval: 500
+  weight_decay: 0.1
+
+data:
+  tokenizer_path: "models/spm.model"
+  train_path: "data/processed/train.npy"
+  val_path: "data/processed/val.npy"
