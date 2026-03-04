@@ -1,9 +1,9 @@
 import torch
 import unittest
-from aethelred_mini.model.attention import StandardAttention, LinearAttention
-from aethelred_mini.model.router import PathRouter
-from aethelred_mini.model.moe import MiniMoE
-from aethelred_mini.config import Config
+from model.attention import StandardAttention, LinearAttention
+from model.router import PathRouter
+from model.moe import MiniMoE
+from config import Config
 
 class TestModelComponents(unittest.TestCase):
     def setUp(self):

@@ -5,7 +5,7 @@ from .attention import StandardAttention, LinearAttention
 from .ssm import SSMLite
 from .router import PathRouter
 from .moe import MiniMoE
-from ..config import Config
+from config import Config
 
 class AETHELREDBlock(nn.Module):
     def __init__(self, config: Config):

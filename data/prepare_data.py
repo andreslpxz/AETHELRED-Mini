@@ -18,16 +18,18 @@ def process_data(input_file, tokenizer_path, output_path, seq_len=1024):
         if tokens:
             all_tokens.extend(tokens + [sp.eos_id()])
 
-    # Chunking
+    # Chunking: we need seq_len + 1 tokens per chunk to get
+    # input and target of length seq_len
+    chunk_size = seq_len + 1
     all_tokens = np.array(all_tokens, dtype=np.uint16)
-    num_chunks = len(all_tokens) // seq_len
+    num_chunks = len(all_tokens) // chunk_size
 
     if num_chunks == 0:
         print("Data too small for the given sequence length.")
         return
 
-    all_tokens = all_tokens[:num_chunks * seq_len]
-    chunks = all_tokens.reshape(-1, seq_len)
+    all_tokens = all_tokens[:num_chunks * chunk_size]
+    chunks = all_tokens.reshape(-1, chunk_size)
 
     np.save(output_path, chunks)
     print(f"Processed data saved to {output_path}. Shape: {chunks.shape}")
